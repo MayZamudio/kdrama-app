@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Editing drama</h1>
+
+  <%= render "form", drama: @drama %>
+
+  <br>
+
+  <div>
+    <%= link_to "Show this drama", @drama %> |
+    <%= link_to "Back to dramas", dramas_path %>
+  </div>
+</div>

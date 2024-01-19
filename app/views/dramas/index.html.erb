@@ -1,0 +1,17 @@
+
+<div class="container">
+  <p style="color: green"><%= notice %></p>
+
+  <h1>Dramas</h1>
+
+  <div id="dramas">
+    <% @dramas.each do |drama| %>
+      <%= render drama %>
+      <p>
+        <%= link_to "Show this drama", drama %>
+      </p>
+    <% end %>
+  </div>
+
+  <%= link_to "New drama", new_drama_path %>
+</div>

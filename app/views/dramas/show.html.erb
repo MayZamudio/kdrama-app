@@ -1,0 +1,12 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="container">
+  <%= render @drama %>
+
+  <div>
+    <%= link_to "Edit this drama", edit_drama_path(@drama) %> |
+    <%= link_to "Back to dramas", dramas_path %>
+
+    <%= button_to "Destroy this drama", @drama, method: :delete %>
+  </div>
+</div>
