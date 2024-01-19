@@ -1,0 +1,47 @@
+<%= form_with(model: drama) do |form| %>
+  <% if drama.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(drama.errors.count, "error") %> prohibited this drama from being saved:</h2>
+
+      <ul>
+        <% drama.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :overview, style: "display: block" %>
+    <%= form.text_area :overview %>
+  </div>
+
+  <div>
+    <%= form.label :air_date, style: "display: block" %>
+    <%= form.text_field :air_date %>
+  </div>
+
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.number_field :rating %>
+  </div>
+
+  <div>
+    <%= form.label :backdrop, style: "display: block" %>
+    <%= form.text_field :backdrop %>
+  </div>
+
+  <div>
+    <%= form.label :poster, style: "display: block" %>
+    <%= form.text_field :poster %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
