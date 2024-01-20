@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  resources :dramas
+  resources :dramas do
+    post 'add_drama', on: :collection
+  end
+  
   get 'about', to: 'pages#about'
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
   root "pages#home"
+  get 'search', to: 'dramas#search_tmdb', as: 'search_tmdb'
 end
