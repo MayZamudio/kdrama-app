@@ -57,6 +57,36 @@ class DramasController < ApplicationController
     end
   end
 
+  def search_tmdb
+    title = params[:title]
+  
+    if title.nil?
+      render 'search'
+    elsif title.blank?
+      flash[:danger] = "Please fill in all required fields!"
+      render 'search_tmdb'
+    else
+      @search_results = Drama.find_in_tmdb(title)
+      if @search_results.empty?
+        flash[:danger] = "No dramas found with given parameters!"
+        redirect_to search_tmdb_path
+      else
+        render 'search'
+      end
+    end
+  end
+
+  def add_drama
+    @search_results = Drama.create!(drama_params)
+    flash[:success] = "#{@search_results.title} was successfully added to RottenPotatoes."
+    # if @search_results.save
+      
+    # else
+    #   flash[:danger] = "Uhoh, #{@search_results.title} was NOT successfully added to RottenPotatoes."
+    # end
+    redirect_to search_tmdb_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_drama
