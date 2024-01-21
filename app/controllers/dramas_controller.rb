@@ -3,7 +3,7 @@ class DramasController < ApplicationController
 
   # GET /dramas or /dramas.json
   def index
-    @dramas = Drama.all
+    @dramas = Drama.all.order(created_at: :desc)
   end
 
   # GET /dramas/1 or /dramas/1.json
@@ -64,7 +64,7 @@ class DramasController < ApplicationController
       render 'search'
     elsif title.blank?
       flash[:danger] = "Please fill in all required fields!"
-      render 'search_tmdb'
+      render 'search'
     else
       @search_results = Drama.find_in_tmdb(title)
       if @search_results.empty?

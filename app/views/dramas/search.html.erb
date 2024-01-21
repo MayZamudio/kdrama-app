@@ -10,7 +10,7 @@
     <div class="search-container">
         <%= form_tag search_tmdb_path, method: :get, id: 'tmdb_form' do %>
         <label for="searchDramaName">Drama Name</label>
-        <%= text_field_tag 'title', nil, class: "form-control", id: "drama_title_field", placeholder: "Reply 1988", id: "drama_title_field"%> 
+        <%= text_field_tag 'title', nil, class: "form-control", id: "drama_title_field", placeholder: "Enter Drama Name...", id: "drama_title_field"%> 
 
         <div class="mt-4">
             <%= submit_tag 'Search', id: 'tmdb_submit', class: 'btn btn-outline-secondary col-2' %>
@@ -25,21 +25,26 @@
     <hr>
     <h2 class="my-4">Search Result</h2>
       <% @search_results.each do |drama| %>
-        <div class="m-5 p-5 rounded-3"  style="--bs-bg-opacity: 1; background-color: rgba(248,249,250, 1)!important;">
-          <img src="https://image.tmdb.org/t/p/w500<%= drama.backdrop %>" class="img-fluid mb-4" alt="Backdrop Image">
-          <h5 class="text-body-emphasis"><%= drama.title %></h5>
-          <h6 class="text-body-secondary" style="color: #6c757d;"><%= drama.air_date %></h6>
-          <p class="lead">
-            <%= drama.overview %>
-          </p>
-          <div>
-            <%= form_tag add_drama_dramas_path, method: :post do %>
-              <%= hidden_field_tag 'drama[backdrop]', drama.backdrop %>
-              <%= hidden_field_tag 'drama[title]', drama.title %>
-              <%= hidden_field_tag 'drama[overview]', drama.overview %>
-              <%= hidden_field_tag 'drama[air_date]', drama.air_date %>
-              <%= submit_tag 'Add Drama', class: 'btn btn-primary' %>
-            <% end %>      
+        <div class="m-5 p-5 rounded-3 row"  style="--bs-bg-opacity: 1; background-color: rgba(248,249,250, 1)!important;">
+          <div class="col-xl text-center">
+            <img src="<%= drama.backdrop ? 'https://image.tmdb.org/t/p/w500' + drama.backdrop : 'https://image.tmdb.org/t/p/w300' + drama.poster %>" class="img-fluid mb-4" alt="Image">
+          </div>
+          <div class="col-xl">
+            <h5 class="text-body-emphasis"><%= drama.title %></h5>
+            <h6 class="text-body-secondary" style="color: #6c757d;"><%= drama.air_date %></h6>
+            <p class="lead">
+              <%= drama.overview %>
+            </p>
+            <div>
+              <%= form_tag add_drama_dramas_path, method: :post do %>
+                <%= hidden_field_tag 'drama[backdrop]', drama.backdrop %>
+                <%= hidden_field_tag 'drama[title]', drama.title %>
+                <%= hidden_field_tag 'drama[overview]', drama.overview %>
+                <%= hidden_field_tag 'drama[air_date]', drama.air_date %>
+                <%= hidden_field_tag 'drama[poster]', drama.poster %>
+                <%= submit_tag 'Add Drama', class: 'btn btn-primary' %>
+              <% end %>      
+            </div>
           </div>
         </div>
       <% end %>
