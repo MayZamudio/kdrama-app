@@ -27,7 +27,7 @@
       <% @search_results.each do |drama| %>
         <div class="m-5 p-5 rounded-3 row"  style="--bs-bg-opacity: 1; background-color: rgba(248,249,250, 1)!important;">
           <div class="col-xl text-center">
-            <img src="<%= drama.backdrop ? 'https://image.tmdb.org/t/p/w500' + drama.backdrop : 'https://image.tmdb.org/t/p/w300' + drama.poster %>" class="img-fluid mb-4" alt="Image">
+            <img src="<%= (drama.backdrop.present? ? 'https://image.tmdb.org/t/p/w500' + drama.backdrop : drama.poster.present? ? 'https://image.tmdb.org/t/p/w300' + drama.poster : 'https://source.unsplash.com/random/500x280/?blush+blossom+wallpaper') %>" class="img-fluid mb-4" alt="Image">
           </div>
           <div class="col-xl">
             <h5 class="text-body-emphasis"><%= drama.title %></h5>

@@ -1,7 +1,7 @@
 <%= form_with(model: drama) do |form| %>
   <% if drama.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(drama.errors.count, "error") %> prohibited this drama from being saved:</h2>
+    <div class="alert alert-danger" role="alert">
+      <h3><%= pluralize(drama.errors.count, "error") %> prohibited this drama from being saved:</h3>
 
       <ul>
         <% drama.errors.each do |error| %>
@@ -11,37 +11,52 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
+  <div class="input-group mt-4">
+    <span class="input-group-text" style="padding-right: 3em;" id="inputGroup-sizing-default">Title</span>
+    <%= form.text_field :title, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
   </div>
 
-  <div>
-    <%= form.label :overview, style: "display: block" %>
-    <%= form.text_area :overview %>
+  <div class="input-group mt-3">
+    <span class="input-group-text">Overview</span>
+    <%= form.text_area :overview, rows: 4, class: "form-control", "aria-label": "With textarea" %>
   </div>
 
-  <div>
-    <%= form.label :air_date, style: "display: block" %>
-    <%= form.text_field :air_date %>
+  <div class="input-group mt-3">
+    <span class="input-group-text" style="padding-right: 1.2em;" id="inputGroup-sizing-default">Air Date</span>
+    <%= form.text_field :air_date, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
   </div>
 
-  <div>
-    <%= form.label :rating, style: "display: block" %>
-    <%= form.number_field :rating %>
+  <div class="input-group mt-3">
+    <span class="input-group-text" style="padding-right: 2em;" id="inputGroup-sizing-default">Rating</span>
+    <%= form.number_field :rating, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
   </div>
 
-  <div>
-    <%= form.label :backdrop, style: "display: block" %>
-    <%= form.text_field :backdrop %>
+  <div class="mt-4">
+    <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/500x200/?blossom" %>
+    <div>
+      <img src="<%= image_url %>" style="height: auto; width: 300px;" class="img-fluid mb-4" alt="Backdrop Image for <%= drama.title %>">
+    </div>
+  </div>
+  <div class="input-group mt-1">
+    <span class="input-group-text" id="inputGroup-sizing-default">Backdrop</span>
+    <%= form.text_field :backdrop, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
   </div>
 
-  <div>
-    <%= form.label :poster, style: "display: block" %>
-    <%= form.text_field :poster %>
+  <div class="mt-4">
+    <% image_url = drama.poster.present? ? "https://image.tmdb.org/t/p/w500#{drama.poster}" : "https://source.unsplash.com/random/500x200/?lavender+wallpaper" %>
+    <div>
+      <img src="<%= image_url %>" style="height: auto; width: 200px;" class="img-fluid mb-4" alt="Poster Image for <%= drama.title %>">
+    </div>
+  </div>
+  <div class="input-group mt-1">
+    <span class="input-group-text" style="padding-right: 2.2em;" id="inputGroup-sizing-default">Poster</span>
+    <%= form.text_field :poster, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="mt-4">
+    <%= form.submit class: "btn btn-primary" do %>
+    Update Drama
+    <% end %>
   </div>
+
 <% end %>
