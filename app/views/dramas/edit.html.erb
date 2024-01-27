@@ -1,12 +1,20 @@
-<div class="container">
-  <h1>Editing drama</h1>
+<div class="container my-5 col-lg-8 col-md-8 justify-content-center">
+  <h1>Editing Drama</h1>
 
   <%= render "form", drama: @drama %>
 
   <br>
 
-  <div>
-    <%= link_to "Show this drama", @drama %> |
-    <%= link_to "Back to dramas", dramas_path %>
+  <div class="rounded-3 d-flex mt-3" >
+    <div class="btn-group">
+      <%= link_to @drama, class: "btn btn-outline-secondary", role: "button" do %>
+      <i class="bi bi-eye"></i>
+      View Drama
+      <% end %>
+      <%= link_to dramas_path, class: "btn btn-outline-secondary", role: "button" do %>
+      <i class="bi bi-house-door"></i>
+      Back to Dramas
+      <% end %>
+    </div>
   </div>
 </div>
