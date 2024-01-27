@@ -1,12 +1,41 @@
 <p style="color: green"><%= notice %></p>
 
-<div class="container">
-  <%= render @drama %>
-
-  <div>
-    <%= link_to "Edit this drama", edit_drama_path(@drama) %> |
-    <%= link_to "Back to dramas", dramas_path %>
-
-    <%= button_to "Destroy this drama", @drama, method: :delete %>
+<main role="main" class="container my-5">
+  <div class="p-5 rounded-3"  style="--bs-bg-opacity: 1; background-color: rgba(248,249,250, 1)!important;">
+    <div class="row">    
+      <div class="col-4 text-center">
+        <% image_url = @drama.poster.present? ? "https://image.tmdb.org/t/p/w500#{@drama.poster}" : "https://source.unsplash.com/random/300x500/?korea" %>
+        <div>
+          <img src="<%= image_url %>" style="height: auto; width: 300px;" class="img-fluid mb-4" alt="Poster Image for <%= @drama.title %>">
+        </div>
+      </div>
+      <div class="col-8"><h2 class="card-title">
+        <h1 class="text-muted"><%= @drama.title %></h1>
+        <h5 class="text-muted"><strong>[Media Type]</strong></h5>
+        <h6 class="text-muted"><strong>Original Language:</strong> coming soon...</h6>
+        <h6 class="text-muted"><strong>Release Date:</strong> <%= @drama.air_date %></h6>
+        <h6 class="text-muted"><strong>Rating:</strong> <%= @drama.rating %></h6>
+        <hr>
+        <p class="lead"><%= @drama.overview %></p>
+      </div>
+    </div>
   </div>
-</div>
+  <div class="p-5 rounded-3 d-flex justify-content-between" >
+    <div class="btn-group">
+      <%= link_to edit_drama_path(@drama), class: "btn btn-outline-secondary", role: "button" do %>
+      <i class="bi bi-pen"></i>
+      Edit
+      <% end %>
+      <%= link_to dramas_path, class: "btn btn-outline-secondary", role: "button" do %>
+      <i class="bi bi-house-door"></i>
+      Back to Dramas
+      <% end %>
+    </div>
+    <div>
+      <%= button_to @drama, method: :delete, class: 'btn btn-danger' do %>
+      <i class="bi bi-trash3"></i>
+      Delete Drama
+      <% end %>
+    </div>
+  </div>
+</main>
