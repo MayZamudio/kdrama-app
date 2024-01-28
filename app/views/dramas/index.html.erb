@@ -2,16 +2,50 @@
 <div class="container">
   <p style="color: green"><%= notice %></p>
 
-  <h1>Dramas</h1>
+  <div class="d-flex justify-content-between align-items-center my-4">
+    <h1 class="text-muted">Dramas</h1>
 
-  <div id="dramas">
-    <% @dramas.each do |drama| %>
-      <%= render drama %>
-      <p>
-        <%= link_to "Show this drama", drama %>
-      </p>
+    <%= link_to search_tmdb_path, class: "btn btn-outline-secondary", role: "button" do %>
+    <i class="bi bi-stars"></i>
+      Add Drama
     <% end %>
   </div>
 
-  <%= link_to "New drama", new_drama_path %>
+
+
+  <div class="row my-4">
+    <% @dramas.each do |drama| %>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <%= link_to drama, class: "movie-card-link" do %>
+          <article style="width: 100%; height: auto;" class="movie-card my-4">
+            <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/300x500/?korea" %>
+            <div class="card-image">
+              <img src="<%= image_url %>" style="height: auto; width: 100%;" alt="Poster Image for <%= drama.title %>">
+            </div>
+            <div class="content">
+              <h1 class="movie-card-title"><%= drama.title %></h1>
+              <div class="infos mt-2">
+              <% rating = drama.rating.to_i %>
+                <svg width="141" height="27" viewBox="0 0 141 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <% (1..5).each do |i| %>
+                    <% if i <= rating %>
+                      <!-- Filled Heart -->
+                      <path d="M<%= 13 + (i - 1) * 27 %> 22.3037L<%= 12 + (i - 1) * 27 %> 20.9837C<%= 6.5 + (i - 1) * 27 %> 16.3137 <%= 4 + (i - 1) * 27 %> 13.2237 <%= 4 + (i - 1) * 27 %> 9.45374 <%= 4 + (i - 1) * 27 %> 6.36374 <%= 6.5 + (i - 1) * 27 %> 3.95374 <%= 9 + (i - 1) * 27 %> 3.95374C<%= 10.5 + (i - 1) * 27 %> 3.95374 <%= 12 + (i - 1) * 27 %> 4.76374 <%= 13.5 + (i - 1) * 27 %> 6.03374C<%= 15 + (i - 1) * 27 %> 4.76374 <%= 17 + (i - 1) * 27 %> 3.95374 <%= 19 + (i - 1) * 27 %> 3.95374C<%= 22 + (i - 1) * 27 %> 3.95374 <%= 24 + (i - 1) * 27 %> 6.36374 <%= 24 + (i - 1) * 27 %> 9.45374C<%= 24 + (i - 1) * 27 %> 13.2237 <%= 20.5 + (i - 1) * 27 %> 16.3137 <%= 15.5 + (i - 1) * 27 %> 20.9837L<%= 14 + (i - 1) * 27 %> 22.3037Z" fill="#CF4D6F"/>
+                    <% else %>
+                      <!-- Empty Heart -->
+                      <path d="M<%= 13 + (i - 1) * 27 %> 22.3037L<%= 12 + (i - 1) * 27 %> 20.9837C<%= 6.5 + (i - 1) * 27 %> 16.3137 <%= 4 + (i - 1) * 27 %> 13.2237 <%= 4 + (i - 1) * 27 %> 9.45374 <%= 4 + (i - 1) * 27 %> 6.36374 <%= 6.5 + (i - 1) * 27 %> 3.95374 <%= 9 + (i - 1) * 27 %> 3.95374C<%= 10.5 + (i - 1) * 27 %> 3.95374 <%= 12 + (i - 1) * 27 %> 4.76374 <%= 13.5 + (i - 1) * 27 %> 6.03374C<%= 15 + (i - 1) * 27 %> 4.76374 <%= 17 + (i - 1) * 27 %> 3.95374 <%= 19 + (i - 1) * 27 %> 3.95374C<%= 22 + (i - 1) * 27 %> 3.95374 <%= 24 + (i - 1) * 27 %> 6.36374 <%= 24 + (i - 1) * 27 %> 9.45374C<%= 24 + (i - 1) * 27 %> 13.2237 <%= 20.5 + (i - 1) * 27 %> 16.3137 <%= 15.5 + (i - 1) * 27 %> 20.9837L<%= 14 + (i - 1) * 27 %> 22.3037Z" fill="none" stroke="#CF4D6F"/>
+
+                    <% end %>
+                  <% end %>
+                </svg>
+                <span>·&nbsp;&nbsp;<%= Time.parse(drama.air_date).strftime("%Y") %></span>
+              </div>
+              <p class="synopsis"><%= truncate(drama.overview, length: 200) %></p>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <hr class="my-5">
 </div>
