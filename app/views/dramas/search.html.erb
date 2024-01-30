@@ -4,19 +4,22 @@
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
-<div class="container">
-    <h1>Search in TMDb</h1>
-    <p>Find KDramas and KMovies using TMDb API</p>
-    <div class="search-container">
-        <%= form_tag search_tmdb_path, method: :get, id: 'tmdb_form' do %>
-        <label for="searchDramaName">Drama Name</label>
-        <%= text_field_tag 'title', nil, class: "form-control", id: "drama_title_field", placeholder: "Enter Drama Name...", id: "drama_title_field"%> 
 
-        <div class="mt-4">
-            <%= submit_tag 'Search', id: 'tmdb_submit', class: 'btn btn-outline-secondary col-2' %>
+<div class="container-fluid jumbotron-darker">
+  <div class="container justify-content-center mb-4 mt-4">
+    <h1 class="text-center">Search in TMDb</h1>
+    <p  class="text-center">Find KDramas and KMovies using TMDb API</p>
+  </div>
+  <div class="container d-flex justify-content-center">
+    <%= form_tag search_tmdb_path, method: :get, id: 'tmdb_form' do %>
+      <div class="input-group mb-3">
+        <%= text_field_tag 'title', nil, class: 'form-control', style: 'width: 300px;', placeholder: "Enter Drama or Actor Name...", aria: { label: "Drama or Actor Name", describedby: 'button-addon2' } %>
+        <div class="input-group-append">
+          <%= button_tag 'Search', class: 'btn btn-outline-secondary', type: 'submit', id: 'button-addon2' %>
         </div>
-        <% end %>
-    </div>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <% if @search_results.present? %>
@@ -27,7 +30,7 @@
    
     <% @search_results.each do |drama| %>
     
-      <div class="row rounded-3 jumbotron-darker m-5 p-5">
+      <div class="row rounded-3 jumbotron-dark m-5 p-5">
         <div class="col-xl">
           <div class="row justify-content-center">
             <img src="<%= (drama.backdrop.present? ? 'https://image.tmdb.org/t/p/w500' + drama.backdrop : drama.poster.present? ? 'https://image.tmdb.org/t/p/w300' + drama.poster : 'https://source.unsplash.com/random/500x280/?korea') %>" class="img-fluid mb-4" alt="Image">

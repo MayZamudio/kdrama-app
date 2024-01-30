@@ -78,7 +78,7 @@ class DramasController < ApplicationController
 
   def add_drama
     @search_results = Drama.create!(drama_params)
-    flash[:success] = "#{@search_results.title} was successfully added to RottenPotatoes."
+    flash[:success] = "#{@search_results.title} was successfully added!"
     # if @search_results.save
       
     # else

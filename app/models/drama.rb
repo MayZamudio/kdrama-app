@@ -57,6 +57,4 @@ class Drama < ApplicationRecord
       actor_name: actor_name
     )
   end
-
-  
 end
