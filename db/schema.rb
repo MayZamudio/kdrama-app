@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_19_075516) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_30_034302) do
   create_table "dramas", force: :cascade do |t|
     t.string "title"
     t.text "overview"
@@ -20,6 +20,10 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_19_075516) do
     t.string "poster"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "profile_path"
+    t.string "actor_name"
+    t.string "country"
+    t.string "media_type"
   end
 
 end
