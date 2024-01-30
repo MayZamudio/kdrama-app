@@ -95,6 +95,6 @@ class DramasController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def drama_params
-      params.require(:drama).permit(:title, :overview, :air_date, :rating, :backdrop, :poster)
+      params.require(:drama).permit(:title, :overview, :air_date, :rating, :backdrop, :poster, :profile_path, :actor_name, :media_type, :country)
     end
 end

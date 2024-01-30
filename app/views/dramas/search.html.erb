@@ -24,29 +24,46 @@
   <div class="container my-5 col-lg-8 col-md-8 justify-content-center">
     <hr>
     <h2 class="my-4">Search Result</h2>
-      <% @search_results.each do |drama| %>
-        <div class="m-5 p-5 rounded-3 row"  style="--bs-bg-opacity: 1; background-color: rgba(248,249,250, 1)!important;">
-          <div class="col-xl text-center">
-            <img src="<%= (drama.backdrop.present? ? 'https://image.tmdb.org/t/p/w500' + drama.backdrop : drama.poster.present? ? 'https://image.tmdb.org/t/p/w300' + drama.poster : 'https://source.unsplash.com/random/500x280/?blush+blossom+wallpaper') %>" class="img-fluid mb-4" alt="Image">
+   
+    <% @search_results.each do |drama| %>
+    
+      <div class="row rounded-3 jumbotron-darker m-5 p-5">
+        <div class="col-xl">
+          <div class="row justify-content-center">
+            <img src="<%= (drama.backdrop.present? ? 'https://image.tmdb.org/t/p/w500' + drama.backdrop : drama.poster.present? ? 'https://image.tmdb.org/t/p/w300' + drama.poster : 'https://source.unsplash.com/random/500x280/?korea') %>" class="img-fluid mb-4" alt="Image">
           </div>
-          <div class="col-xl">
-            <h5 class="text-body-emphasis"><%= drama.title %></h5>
-            <h6 class="text-body-secondary" style="color: #6c757d;"><%= drama.air_date %></h6>
-            <p class="lead">
-              <%= drama.overview %>
-            </p>
-            <div>
-              <%= form_tag add_drama_dramas_path, method: :post do %>
-                <%= hidden_field_tag 'drama[backdrop]', drama.backdrop %>
-                <%= hidden_field_tag 'drama[title]', drama.title %>
-                <%= hidden_field_tag 'drama[overview]', drama.overview %>
-                <%= hidden_field_tag 'drama[air_date]', drama.air_date %>
-                <%= hidden_field_tag 'drama[poster]', drama.poster %>
-                <%= submit_tag 'Add Drama', class: 'btn btn-primary' %>
-              <% end %>      
-            </div>
+          <div class="row align-items-start">
+            <% if drama.actor_name.present? %>
+              <h5 class="text-body-emphasis small"><%= drama.actor_name %></h5>
+            <% end %>     
+            <% if drama.profile_path.present? %>
+              <img style="height: auto; width: 100px;"  src="https://image.tmdb.org/t/p/w300<%= drama.profile_path %>" class="img-fluid mb-2" alt="Actor Image for <%= drama.actor_name %>">
+            <% end %>         
           </div>
         </div>
-      <% end %>
+
+        <div class="col-xl">
+          <h5 class="text-body-emphasis"><%= drama.title %></h5>
+          <h6 class="text-body-secondary" style="color: #6c757d;"><%= drama.air_date %></h6>
+          <p class="lead">
+            <%= drama.overview %>
+          </p>
+          <div>
+            <%= form_tag add_drama_dramas_path, method: :post do %>
+              <%= hidden_field_tag 'drama[backdrop]', drama.backdrop %>
+              <%= hidden_field_tag 'drama[title]', drama.title %>
+              <%= hidden_field_tag 'drama[media_type]', drama.media_type %>
+              <%= hidden_field_tag 'drama[country]', drama.country %>
+              <%= hidden_field_tag 'drama[overview]', drama.overview %>
+              <%= hidden_field_tag 'drama[air_date]', drama.air_date %>
+              <%= hidden_field_tag 'drama[poster]', drama.poster %>
+              <%= hidden_field_tag 'drama[profile_path]', drama.profile_path %>
+              <%= hidden_field_tag 'drama[actor_name]', drama.actor_name %>
+              <%= submit_tag 'Add Drama', class: 'btn btn-primary' %>
+            <% end %>      
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>

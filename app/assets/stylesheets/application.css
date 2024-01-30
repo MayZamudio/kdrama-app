@@ -270,3 +270,23 @@ img {
 .movie-card:not(:hover) .content {
   transform: translateY(calc(100% - 4.5em));
 }
+
+.jumbotron-darker {
+  --bs-bg-opacity: 1;
+  background-color: rgba(248, 249, 250, 1) !important;
+}
+
+.actor-name,
+small {
+  font-size: 0.8em;
+}
+
+.drama-image {
+  height: auto;
+  width: 200px;
+}
+
+.drama-backdrop {
+  height: auto;
+  width: 300px;
+}

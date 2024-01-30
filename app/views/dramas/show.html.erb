@@ -1,22 +1,33 @@
 <p style="color: green"><%= notice %></p>
 
 <main role="main" class="container my-5">
-  <div class="p-5 rounded-3"  style="--bs-bg-opacity: 1; background-color: rgba(248,249,250, 1)!important;">
+  <div class="p-5 rounded-3 jumbotron-darker">
     <div class="row">    
       <div class="col-4 text-center">
         <% image_url = @drama.poster.present? ? "https://image.tmdb.org/t/p/w500#{@drama.poster}" : "https://source.unsplash.com/random/300x500/?korea" %>
         <div>
-          <img src="<%= image_url %>" style="height: auto; width: 300px;" class="img-fluid mb-4" alt="Poster Image for <%= @drama.title %>">
+          <img src="<%= image_url %>" class="img-fluid mb-4 drama-backdrop" alt="Poster Image for <%= @drama.title %>">
         </div>
       </div>
       <div class="col-8"><h2 class="card-title">
-        <h1 class="text-muted"><%= @drama.title %></h1>
-        <h5 class="text-muted"><strong>[Media Type]</strong></h5>
-        <h6 class="text-muted"><strong>Original Language:</strong> coming soon...</h6>
-        <h6 class="text-muted"><strong>Release Date:</strong> <%= @drama.air_date %></h6>
-        <h6 class="text-muted"><strong>Rating:</strong> <%= @drama.rating %></h6>
-        <hr>
-        <p class="lead"><%= @drama.overview %></p>
+        <div class="row">
+          <h1 class="text-muted"><%= @drama.title %></h1>
+          <h6 class="text-muted"><strong><%= @drama.media_type %> ·&nbsp; <%= @drama.country %></strong></h6>
+          <h6 class="text-muted"><strong>Release Date:</strong> <%= @drama.air_date.to_date.strftime("%B %d, %Y") %></h6>
+          <div class="mb-2"><%= render partial: 'rating', locals: { drama: @drama } %></div>
+          <hr class="my-4"> 
+          <p class="lead"><%= @drama.overview %></p>          
+        </div>
+        
+        <div class="row align-items-start mt-4">
+          <% if @drama.profile_path.present? %>
+            <img style="height: auto; width: 100px;" src="https://image.tmdb.org/t/p/w300<%= @drama.profile_path %>" class="img-fluid" alt="Actor Image for <%= @drama.actor_name %>">
+          <% end %>  
+          <% if @drama.actor_name.present? %>
+            <h6 class="text-body-emphasis"><small class="actor-name"><%= @drama.actor_name %></small></h6>
+          <% end %>        
+        </div>
+
       </div>
     </div>
   </div>

@@ -34,7 +34,7 @@
   <div class="mt-4">
     <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/500x200/?blossom" %>
     <div>
-      <img src="<%= image_url %>" style="height: auto; width: 300px;" class="img-fluid mb-4" alt="Backdrop Image for <%= drama.title %>">
+      <img src="<%= image_url %>" class="img-fluid mb-4 drama-backdrop" alt="Backdrop Image for <%= drama.title %>">
     </div>
   </div>
   <div class="input-group mt-1">
@@ -45,13 +45,30 @@
   <div class="mt-4">
     <% image_url = drama.poster.present? ? "https://image.tmdb.org/t/p/w500#{drama.poster}" : "https://source.unsplash.com/random/500x200/?lavender+wallpaper" %>
     <div>
-      <img src="<%= image_url %>" style="height: auto; width: 200px;" class="img-fluid mb-4" alt="Poster Image for <%= drama.title %>">
+      <img src="<%= image_url %>" class="img-fluid mb-4 drama-image" alt="Poster Image for <%= drama.title %>">
     </div>
   </div>
   <div class="input-group mt-1">
     <span class="input-group-text" style="padding-right: 2.2em;" id="inputGroup-sizing-default">Poster</span>
     <%= form.text_field :poster, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
   </div>
+
+  <div class="input-group mt-3">
+    <span class="input-group-text" style="padding-right: 2.4em;" id="inputGroup-sizing-default">Actor</span>
+    <%= form.text_field :actor_name, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
+  </div>
+
+  <div class="mt-4">
+    <% image_url = drama.profile_path? ? "https://image.tmdb.org/t/p/w500#{drama.profile_path}" : "" %>
+    <div>
+      <img src="<%= image_url %>" style="height: auto; width: 100px;" class="img-fluid mb-4" alt="">
+    </div>
+  </div>
+  <div class="input-group mt-1">
+    <span class="input-group-text" style="padding-right: 2.2em;" id="inputGroup-sizing-default">Portrait</span>
+    <%= form.text_field :profile_path, class: "form-control", "aria-label": "Sizing example input", "aria-describedby": "inputGroup-sizing-default" %>
+  </div>
+
 
   <div class="mt-4">
     <%= form.submit class: "btn btn-primary" do %>
