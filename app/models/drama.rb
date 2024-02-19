@@ -1,5 +1,5 @@
 class Drama < ApplicationRecord
-  validates :title, presence: true, length: {minimum:5, maximum:100}
+  validates :title, presence: true, length: {minimum:1, maximum:100}
   validates :overview, presence: true, length: {minimum:10}
 
   def self.find_in_tmdb(api_key='cda4f0b6b9f50acb07381d9ef76d2202', title)
