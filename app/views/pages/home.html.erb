@@ -30,7 +30,7 @@ Explore my exclusive archive, a curated watchlist where you can uncover, monitor
         <div class="col-lg-4 col-md-6 col-sm-12">
             <%= link_to drama, class: "movie-card-link" do %>
             <article style="width: 100%; height: auto;" class="movie-card my-4">
-                <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/300x500/?korea" %>
+                <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/355x200/?korea" %>
                 <div class="card-image">
                 <img src="<%= image_url %>" style="height: auto; width: 100%;" alt="Poster Image for <%= drama.title %>">
                 </div>
