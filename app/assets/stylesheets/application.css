@@ -122,14 +122,14 @@
     --font-color-strong: var(--color-gray-50);
     --font-color-light: var(--color-gray-500);
     --background-page: var(--color-gray-900);
-    --shadow-color-hsl: 0 0% 0%;
-    --shadow-opacity: 0.8;
+    --shadow-opacity: 0.45;
   }
 }
 
 .movie-card {
   --transition-duration: 700ms;
   color: white;
+  background-color: #454545;
   position: relative;
   border-radius: 0.6em;
   overflow: hidden;
