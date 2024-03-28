@@ -1,11 +1,11 @@
 <% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %> alert-dismissible text-center fade show" role="alert">
+  <div class="alert alert-<%= key %> alert-dismissible fade show" role="alert">
     <%= value %>
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 <% end %>
 
-<div class="container-fluid jumbotron-darker">
+<div class="container-fluid jumbotron-darker vh-90">
   <div class="container justify-content-center mb-4 mt-4">
     <h1 class="text-center">Search in TMDb</h1>
     <p  class="text-center">Find KDramas and KMovies using TMDb API</p>
@@ -13,9 +13,12 @@
   <div class="container d-flex justify-content-center">
     <%= form_tag search_tmdb_path, method: :get, id: 'tmdb_form' do %>
       <div class="input-group mb-3">
-        <%= text_field_tag 'title', nil, class: 'form-control', style: 'width: 300px;', placeholder: "Enter Drama or Actor Name...", aria: { label: "Drama or Actor Name", describedby: 'button-addon2' } %>
+        <%= text_field_tag 'title', nil, class: 'form-control', placeholder: "Enter Drama or Actor Name...", aria: { label: "Drama or Actor Name", describedby: 'button-addon2' } %>
         <div class="input-group-append">
-          <%= button_tag 'Search', class: 'btn btn-outline-secondary', type: 'submit', id: 'button-addon2' %>
+          <%= button_tag type: 'submit', class: 'btn btn-outline-secondary', id: 'button-addon2' do %>
+            <i class="bi bi-search"></i> 
+            <span class="d-none d-sm-inline">Search</span>
+          <% end %>
         </div>
       </div>
     <% end %>

@@ -314,3 +314,23 @@ small {
 .alert {
   margin-bottom: 0rem !important;
 }
+
+/*==============================================================================================*/
+/* Media Queries         ||---------------------------- */
+/*==============================================================================================*/
+
+@media screen and (max-width: 440px) {
+  .jumbotron-darker {
+    padding: 6rem 1rem;
+  }
+
+  #tmdb_form {
+    width: 300px !important;
+  }
+}
+
+@media (min-width: 441px) {
+  #tmdb_form {
+    width: 500px !important;
+  }
+}
