@@ -310,3 +310,7 @@ small {
 .nav {
   padding-right: 2em !important;
 }
+
+.alert {
+  margin-bottom: 0rem !important;
+}

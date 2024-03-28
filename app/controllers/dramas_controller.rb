@@ -38,7 +38,8 @@ class DramasController < ApplicationController
   def update
     respond_to do |format|
       if @drama.update(drama_params)
-        format.html { redirect_to drama_url(@drama), notice: "Drama was successfully updated." }
+        flash[:success] = "#{@drama.title} was successfully updated."
+        format.html { redirect_to drama_url(@drama) }
         format.json { render :show, status: :ok, location: @drama }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -49,10 +50,14 @@ class DramasController < ApplicationController
 
   # DELETE /dramas/1 or /dramas/1.json
   def destroy
+    drama_title = @drama.title
     @drama.destroy
 
     respond_to do |format|
-      format.html { redirect_to dramas_url, notice: "Drama was successfully destroyed." }
+      format.html { 
+        flash[:danger] = "#{drama_title} was successfully destroyed."
+        redirect_to dramas_url 
+      }
       format.json { head :no_content }
     end
   end
@@ -79,11 +84,6 @@ class DramasController < ApplicationController
   def add_drama
     @search_results = Drama.create!(drama_params)
     flash[:success] = "#{@search_results.title} was successfully added!"
-    # if @search_results.save
-      
-    # else
-    #   flash[:danger] = "Uhoh, #{@search_results.title} was NOT successfully added to RottenPotatoes."
-    # end
     redirect_to search_tmdb_path
   end
 
