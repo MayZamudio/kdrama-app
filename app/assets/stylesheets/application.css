@@ -128,21 +128,21 @@
 
 html,
 body {
-  height: 100%; /* Make sure the body takes up the full viewport height */
-  margin: 0; /* Reset default margin */
+  height: 100%;
+  margin: 0;
 }
 
 body {
-  display: flex; /* Use flexbox to organize children */
-  flex-direction: column; /* Stack children vertically */
+  display: flex;
+  flex-direction: column;
 }
 
 main {
-  flex-grow: 1; /* Allows the main content to grow and fill the available space */
+  flex-grow: 1;
 }
 
 footer {
-  height: 10vh; /* Footer takes up 10% of the viewport height */
+  height: 10vh;
 }
 
 .movie-card {
