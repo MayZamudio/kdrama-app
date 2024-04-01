@@ -126,6 +126,25 @@
   }
 }
 
+html,
+body {
+  height: 100%; /* Make sure the body takes up the full viewport height */
+  margin: 0; /* Reset default margin */
+}
+
+body {
+  display: flex; /* Use flexbox to organize children */
+  flex-direction: column; /* Stack children vertically */
+}
+
+main {
+  flex-grow: 1; /* Allows the main content to grow and fill the available space */
+}
+
+footer {
+  height: 10vh; /* Footer takes up 10% of the viewport height */
+}
+
 .movie-card {
   --transition-duration: 700ms;
   color: white;
