@@ -13,15 +13,15 @@
   </head>
 
   <body>
+
+    <main>
     <header>
       <%= render 'layouts/navbar' %>
-    </header>
-    <main>
+    </header>      
       <%= yield %>
-      <footer>
-        <%= render 'layouts/footer' %>
-      </footer>      
     </main>
-
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer> 
   </body>
 </html>
