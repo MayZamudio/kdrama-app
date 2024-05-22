@@ -145,6 +145,11 @@ footer {
   height: 10vh;
 }
 
+.logo_image {
+  width: 4rem;
+  height: auto;
+}
+
 .movie-card {
   --transition-duration: 700ms;
   color: white;
@@ -328,6 +333,10 @@ small {
 
 .nav {
   padding-right: 2em !important;
+}
+
+.nav-item {
+  font-size: 1.2rem !important;
 }
 
 .alert {
