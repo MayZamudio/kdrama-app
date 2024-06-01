@@ -24,5 +24,14 @@
     <footer>
       <%= render 'layouts/footer' %>
     </footer> 
+    <script>
+      (() => {
+      'use strict'
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+          .forEach(tooltip => {
+            new bootstrap.Tooltip(tooltip)
+          })
+      })()
+    </script>
   </body>
 </html>

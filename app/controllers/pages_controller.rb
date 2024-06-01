@@ -4,5 +4,6 @@ class PagesController < ApplicationController
   end
 
   def about
+    @favorite_drama = Drama.where(title: ["Death's Game", "Reply 1988", "Move to Heaven"]).order(created_at: :desc)
   end
 end
