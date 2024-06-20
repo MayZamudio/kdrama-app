@@ -1,0 +1,4 @@
+<div class="container">
+  <h1 class="text-muted">Dramas · <%= params[:year] || Time.now.year %></h1>
+  <%= render partial: 'shared/dramas_list', locals: { dramas: @dramas, dramas_count: @dramas_count, year: params[:year] } %>
+</div>
