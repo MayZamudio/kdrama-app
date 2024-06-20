@@ -3,7 +3,27 @@ class DramasController < ApplicationController
 
   # GET /dramas or /dramas.json
   def index
-    @dramas = Drama.all.order(created_at: :desc)
+    @year = Time.now.year
+    @dramas = Drama.where("strftime('%Y', created_at) = ?", @year.to_s).order(created_at: :desc)
+    @dramas_count = Drama.all.count
+    # @dramas = Drama.all.order(created_at: :desc)
+  end
+
+  # GET /dramas/year/202X
+  def by_year
+    year = params[:year].to_i
+    current_year = Time.now.year
+    if year < 2022
+      flash[:warning] = "I started watching KDramas in 2022. 💕"
+      redirect_to dramas_path
+    elsif year > current_year
+      flash[:warning] = "Hey, you! Stop it! 💞 You can't see the future! "
+      redirect_to dramas_path
+    else
+      @dramas = Drama.where("strftime('%Y', created_at) = ?", year.to_s).order(created_at: :desc)
+      @dramas_count = @dramas.count
+      render 'year'
+    end
   end
 
   # GET /dramas/1 or /dramas/1.json
