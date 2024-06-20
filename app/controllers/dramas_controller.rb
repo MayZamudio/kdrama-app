@@ -4,7 +4,9 @@ class DramasController < ApplicationController
   # GET /dramas or /dramas.json
   def index
     @year = Time.now.year
-    @dramas = Drama.where("strftime('%Y', created_at) = ?", @year.to_s).order(created_at: :desc)
+    start_of_year = Date.new(@year, 1, 1)
+    end_of_year = Date.new(@year, 12, 31)
+    @dramas = Drama.where(created_at: start_of_year..end_of_year).order(created_at: :desc)
     @dramas_count = Drama.count
     # @dramas = Drama.all.order(created_at: :desc)
   end
@@ -20,7 +22,9 @@ class DramasController < ApplicationController
       flash[:warning] = "Hey, you! Stop it! 💞 You can't see the future! "
       redirect_to dramas_path
     else
-      @dramas = Drama.where("strftime('%Y', created_at) = ?", year.to_s).order(created_at: :desc)
+      start_of_year = Date.new(year, 1, 1)
+      end_of_year = Date.new(year, 12, 31)
+      @dramas = Drama.where(created_at: start_of_year..end_of_year).order(created_at: :desc)
       @dramas_count = @dramas.count
       render 'year'
     end
