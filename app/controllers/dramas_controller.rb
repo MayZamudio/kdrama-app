@@ -5,7 +5,7 @@ class DramasController < ApplicationController
   def index
     @year = Time.now.year
     @dramas = Drama.where("strftime('%Y', created_at) = ?", @year.to_s).order(created_at: :desc)
-    @dramas_count = Drama.all.count
+    @dramas_count = Drama.count
     # @dramas = Drama.all.order(created_at: :desc)
   end
 
