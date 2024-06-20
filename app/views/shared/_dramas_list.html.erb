@@ -1,25 +1,29 @@
-<div class="row my-4">
-  <% @dramas.each do |drama| %>
-    <div class="col-lg-4 col-md-6 col-sm-12">
-      <%= link_to drama, class: "movie-card-link card-container d-flex align-items-center justify-content-center" do %>
-        <article style="width: 100%; height: auto;" class="movie-card my-4">
-          <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/355x200/?korea" %>
-          <div class="card-image">
-            <img src="<%= image_url %>" style="height: auto; width: 100%;" alt="Poster Image for <%= drama.title %>">
-          </div>
-          <div class="content">
-            <h1 class="movie-card-title"><%= drama.title %></h1>
-            <div class="infos mt-2">
-              <%= render partial: 'rating', locals: { drama: drama } %>
-              <span>·&nbsp;&nbsp;<%= Time.parse(drama.air_date).strftime("%Y") %></span>
+<% if @dramas.present? %>
+  <div class="row my-4">
+    <% @dramas.each do |drama| %>
+      <div class="col-lg-4 col-md-6 col-sm-12">
+        <%= link_to drama, class: "movie-card-link card-container d-flex align-items-center justify-content-center" do %>
+          <article style="width: 100%; height: auto;" class="movie-card my-4">
+            <% image_url = drama.backdrop.present? ? "https://image.tmdb.org/t/p/w500#{drama.backdrop}" : "https://source.unsplash.com/random/355x200/?korea" %>
+            <div class="card-image">
+              <img src="<%= image_url %>" style="height: auto; width: 100%;" alt="Poster Image for <%= drama.title %>">
             </div>
-            <p class="synopsis"><%= truncate(drama.overview, length: 200) %></p>
-          </div>
-        </article>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+            <div class="content">
+              <h1 class="movie-card-title"><%= drama.title %></h1>
+              <div class="infos mt-2">
+                <%= render partial: 'rating', locals: { drama: drama } %>
+                <span>·&nbsp;&nbsp;<%= Time.parse(drama.air_date).strftime("%Y") %></span>
+              </div>
+              <p class="synopsis"><%= truncate(drama.overview, length: 200) %></p>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <p>No dramas found for this year.</p>
+<% end %>
 
 <ul class="nav nav-pills my-4 d-flex justify-content-between">
   <div class="d-flex align-items-center">
