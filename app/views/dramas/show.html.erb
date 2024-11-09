@@ -9,7 +9,7 @@
   <div class="p-5 rounded-3 jumbotron-dark">
     <div class="row">    
       <div class="col-lg-4 col-md-4 text-center">
-        <% image_url = @drama.poster.present? ? "https://image.tmdb.org/t/p/w500#{@drama.poster}" : "https://source.unsplash.com/random/300x500/?korea" %>
+        <% image_url = @drama.poster.present? ? "https://image.tmdb.org/t/p/w500#{@drama.poster}" : image_path('unavailable_poster.png') %>
         <div>
           <img src="<%= image_url %>" class="img-fluid mb-4 drama-backdrop" alt="Poster Image for <%= @drama.title %>">
         </div>
